@@ -2,8 +2,9 @@
 FROM maven:3.9-eclipse-temurin-17-alpine AS build
 WORKDIR /app
 
-# 複製專案程式碼與設定檔
-COPY pom.xml .
+# 因為 Render 的 Root Directory 已經切換到內層的 miniclinic 了
+# 這裡直接複製當前目錄下的 pom.xml 與 src 資料夾即可
+COPY pom.xml ./
 COPY src ./src
 
 # 執行 Maven 打包，跳過測試以加速部署
